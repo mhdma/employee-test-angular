@@ -1,0 +1,63 @@
+<div class="container">
+   <br>
+  
+
+   <button class="btn btn-success" (click)="showAddUserForm()">Add New Employee</button>
+   <div class="mt-4">
+      <form *ngIf="EmployeeForm">
+         <h2>Add New User</h2>
+         <p> Name: <input type="text" name="Name" [(ngModel)]="newEmployee.Name" class="form-control" /></p>
+         <p> Phone: <input type="text" name="Phone" [(ngModel)]="newEmployee.Phone" class="form-control" /></p>
+         <p> Email: <input type="email" name="Email" [(ngModel)]="newEmployee.Email" class="form-control" /></p>
+         <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveEmployee(newEmployee)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewEmployee()">Cancel</button>
+         </p>
+      </form>
+
+      <form *ngIf="editEmployeeForm">
+         <h2>Edit User Details</h2>
+         <p> Name: <input type="text" name="Name" [(ngModel)]="editedEmployee.Name" class="form-control" /></p>
+         <p> Phone: <input type="text" name="Phone" [(ngModel)]="editedEmployee.Phone" class="form-control" /></p>
+         <p> Email: <input type="email" name="Email" [(ngModel)]="editedEmployee.Email" class="form-control" /></p>
+         <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateEmployee()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+         </p>
+      </form>
+   </div>
+   <div class="row">
+      <div class="col-md-12 mt-4">
+         <h1 class="text-center">Employee List</h1>
+         <table class="table table-bordered table-striped table-hover">
+            <thead>
+               <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Name</th>
+                  <th class="text-center">Phone</th>
+                  <th class="text-center">Email</th>
+                  <th class="text-center">&nbsp;</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let emp of employees">
+                  <td>{{ emp.Id }}</td>
+                  <td>{{ emp.Name }}</td>
+                  <td>{{ emp.Phone }}</td>
+                  <td>{{ emp.Email }}</td>
+
+                  <td>
+                     <button type="button" class="btn btn-info btn-sm mr-2"
+                        (click)="showEditUserForm(emp)">Edit</button>
+
+                     <button type="button" class="btn btn-danger btn-sm" (click)="removeEmployee(emp)">Delete</button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+
+
+
+      </div>
+   </div>
+</div>
